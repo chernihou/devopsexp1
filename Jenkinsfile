@@ -22,7 +22,7 @@ tools{
             steps {
                 dir ("devopsexp1"){
                     sh "mvn clean install"
-                    sh "docker build -t devopsexp1 ."
+                    sh "sudo docker build -t devopsexp1 ."
                 }
             }
         }
@@ -31,7 +31,7 @@ tools{
         stage("Run docker compose") {
             steps {
                 dir("devopsexp1"){
-                sh "docker compose up -d"
+                sh "sudo docker compose up -d"
             }
         }
     }  

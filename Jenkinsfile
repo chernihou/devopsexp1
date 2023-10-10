@@ -30,7 +30,7 @@ tools{
     
         stage("Run docker compose") {
             steps {
-                dir("devopsexp1"
+                dir("devopsexp1"){
                 sh "docker compose up -d"
             }
         }

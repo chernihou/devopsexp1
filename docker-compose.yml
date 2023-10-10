@@ -1,5 +1,5 @@
 services:
-spring-boot_app:
+spring-boot-app:
    image: devopsexp1
    ports:
       - "0.0.0.0:8084:8080"

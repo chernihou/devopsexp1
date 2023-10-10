@@ -1,32 +1,39 @@
 pipeline {
     agent any
-
+tools{
+    maven 'maven'
+}
     stages {
-        stage('Hello') {
+        stage("clean up") {
             steps {
-                echo 'Hello World'
+                echo deleteDir()
             }
         }
     
     
-        stage('Build') {
+        stage("clone repo") {
             steps {
-                echo 'Dev'
+                sh "git clone https://github.com/chernihou/devopsexp1"
             }
         }
     
 
-        stage('Test') {
+        stage("Generate backend image") {
             steps {
-                echo 'Testing'
+                dir ("devopsexp1"){
+                    sh "mvn clean install"
+                    sh "docker build -t devopsexp1 ."
+                }
             }
         }
     
     
-        stage('Deploy') {
+        stage("Run docker compose") {
             steps {
-                echo 'Mise en production'
+                dir("devopsexp1"
+                sh "docker compose up -d"
             }
         }
     }  
+}
 }
